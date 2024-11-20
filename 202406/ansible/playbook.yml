@@ -1,0 +1,31 @@
+---
+- hosts: all
+
+  tasks:
+    - include_role:
+        name: 2do_parcial
+    
+    - name: "Otra tarea"
+      debug:
+        msg: "Despues de la ejecucion"
+
+- name: Generar archivo de datos del alumno
+  template:
+    src: datos_alumno.j2
+    dest: /tmp/2do_parcial/alumno/datos_alumno.txt
+  vars:
+    alumno:
+      nombre: "tu-nombre"
+      apellido: "tu-apellido"
+      division: "tu-division"
+
+- name: Generar archivo de datos del equipo
+  template:
+    src: datos_equipo.j2
+    dest: /tmp/2do_parcial/equipo/datos_equipo.txt
+  vars:
+    equipo:
+      ip: "tu-ip"
+      distro: "tu-distro"
+      cores: "cantidad-de-cores"
+
